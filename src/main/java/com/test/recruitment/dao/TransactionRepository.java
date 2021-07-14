@@ -33,4 +33,24 @@ public interface TransactionRepository {
 	 * @return
 	 */
 	Page<Transaction> getTransactionsByAccount(String accountId, Pageable p);
+
+	/**
+	 * Remove a specific transaction from the account
+	 * 
+	 * @param accountId
+	 *            the account id
+	 * @param transactionId
+	 *             the translation id
+	 */
+	void removeTransactionForAccount(String accountId, String transactionId);
+
+	
+	/**
+	 * Check if transaction exists
+	 * 
+	 * @param transactionId
+	 *            the transaction id
+	 * @return true if the transaction exists
+	 */
+	boolean exists(String transactionId);
 }

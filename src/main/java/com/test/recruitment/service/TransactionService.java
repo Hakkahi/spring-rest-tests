@@ -68,4 +68,35 @@ public class TransactionService {
 		return result;
 	}
 
+	/**
+	 * Check if an transaction exists
+	 * 
+	 * @param transactionId
+	 *            the transaction id
+	 * @return true if the transaction exists
+	 */
+	public boolean istransactionExist(String transactionId) {
+		return transactionRepository.exists(transactionId);
+	}
+
+	/**
+	 * Remove a specific transaction from the account
+	 * 
+	 * @param accountId
+	 *            the account id
+	 * @param transactionId
+	 *            the transaction id
+	 */
+	public void removeTransactionForAccount(String accountId, String transactionId){
+		if (!accountService.isAccountExist(accountId)) {
+			throw new ServiceException(ErrorCode.NOT_FOUND_ACCOUNT,
+					"Account doesn't exist");
+		}
+		if (!this.istransactionExist(transactionId)) {
+			throw new ServiceException(ErrorCode.NOT_FOUND_TRANSACTION,
+					"Transaction doesn't exist");
+		}
+		transactionRepository.removeTransactionForAccount(accountId, transactionId);
+	}
+
 }

@@ -33,4 +33,9 @@ public interface TransactionController {
 	ResponseEntity<Page<TransactionResponse>> getTransactionsByAccount(
 			@PathVariable("accountId") String accountId,
 			@PageableDefault Pageable p);
+
+	@RequestMapping(value = "/{transactionId}", method = RequestMethod.DELETE)
+	void removeTransactionForAccount(
+		@PathVariable("accountId") String accountId,
+		@PathVariable("transactionId") String transactionId);
 }

@@ -70,4 +70,14 @@ public class TransactionRepositoryImpl implements TransactionRepository,
 				.collect(Collectors.toList()));
 	}
 
+	@Override
+	public void removeTransactionForAccount(String accountId, String transactionId) {
+		transactions.removeIf( t -> (t.getAccountId().equals(accountId) && t.getId().equals(transactionId)));
+	}
+
+	@Override
+	public boolean exists(String transactionId) {
+		return transactions.stream().anyMatch(a -> a.getId().equals(transactionId));
+	}
+
 }

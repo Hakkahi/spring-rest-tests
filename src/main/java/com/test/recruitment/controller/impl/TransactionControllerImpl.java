@@ -44,4 +44,11 @@ public class TransactionControllerImpl implements TransactionController {
 		}
 		return ResponseEntity.ok().body(page);
 	}
+
+	@Override
+	public void removeTransactionForAccount(
+		@PathVariable("accountId") String accountId,
+		@PathVariable("transactionId") String transactionId){
+			transactionService.removeTransactionForAccount(accountId, transactionId);
+		}
 }
